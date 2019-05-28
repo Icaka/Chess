@@ -19,4 +19,5 @@ public:
 	short getNumber() const;
 	bool ifVisible() const;
 	char getColor() const;
+	void output();
 };

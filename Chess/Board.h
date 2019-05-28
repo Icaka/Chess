@@ -12,4 +12,5 @@ public:
 	void visualise();
 	void makeBlackSquare();
 	void makeWhiteSquare();
+	void moveFigure(const char*, const char*);//
 };

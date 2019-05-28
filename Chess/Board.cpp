@@ -49,15 +49,15 @@ void Board::visualise()
 			{
 				if (squares[i][j].getColor() == 'b')
 				{
-					std::cout << " 1 ";
+					std::cout << "  1  ";
 				}
 				if (squares[i][j].getColor() == 'w')
 				{
-					std::cout << " 0 ";
+					std::cout << "  0  ";
 				}
 			}
 		}
-		std::cout << std::endl;
+		std::cout << std::endl << std::endl;
 	}
 }
 
