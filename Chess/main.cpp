@@ -9,5 +9,7 @@ int main()
 	Board myBoard;
 	myBoard.visualise();
 	myBoard.viewSquareNumbers();
+	cout << endl;
+	myBoard.viewSquarePositions();
 	return 0;
 }
