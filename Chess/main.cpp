@@ -8,5 +8,6 @@ int main()
 	cout << "Hello" << endl;
 	Board myBoard;
 	myBoard.visualise();
+	myBoard.viewSquareNumbers();
 	return 0;
 }

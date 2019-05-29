@@ -4,7 +4,7 @@
 class Board
 {
 private:
-	Square squares[12][10];
+	Square squares[8][8];
 
 public:
 	Board();
@@ -13,4 +13,5 @@ public:
 	void makeBlackSquare();
 	void makeWhiteSquare();
 	void moveFigure(const char*, const char*);//
+	void viewSquareNumbers();
 };
