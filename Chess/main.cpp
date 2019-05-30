@@ -11,5 +11,7 @@ int main()
 	myBoard.viewSquareNumbers();
 	cout << endl;
 	myBoard.viewSquarePositions();
+	cout << endl;
+	myBoard.PrettyPrinting();
 	return 0;
 }

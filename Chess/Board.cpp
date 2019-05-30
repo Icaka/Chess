@@ -98,3 +98,81 @@ void Board::viewSquarePositions()
 		std::cout << std::endl;
 	}
 }
+
+void Board::PrettyPrinting()
+{
+	for (int i = 0; i < rows; i++)
+	{
+		std::cout << "     ";
+		for (int j = 0; j < cols; j++)
+		{
+			if (squares[i][j].getColor() == 'b')
+			{
+				std::cout << "* * * * *";
+			}
+			else {
+				std::cout << "         ";
+			}
+		}
+		std::cout << std::endl;
+
+		std::cout << "     ";
+		for (int j = 0; j < cols; j++)
+		{
+			if (squares[i][j].getColor() == 'b')
+			{
+				std::cout << "* * * * *";
+			}
+			else {
+				std::cout << "         ";
+			}
+		}
+		std::cout << std::endl;
+
+		std::cout << "  " << rows - i << "  ";
+		for (int j = 0; j < cols; j++) // this "for" will be checking for the occupacy
+		{
+			if (squares[i][j].getColor() == 'b')
+			{
+				std::cout << "* * * * *";
+			}
+			else {
+				std::cout << "         ";
+			}
+		}
+		std::cout << std::endl;
+		
+		std::cout << "     ";
+		for (int j = 0; j < cols; j++)
+		{
+			if (squares[i][j].getColor() == 'b')
+			{
+				std::cout << "* * * * *";
+			}
+			else {
+				std::cout << "         ";
+			}
+		}
+		std::cout << std::endl;
+
+		std::cout << "     ";
+		for (int j = 0; j < cols; j++)
+		{
+			if (squares[i][j].getColor() == 'b')
+			{
+				std::cout << "* * * * *";
+			}
+			else {
+				std::cout << "         ";
+			}
+		}
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl << "         ";
+	for (int j = 0; j < cols; j++)
+	{
+		std::cout << pos1[j] << "        ";
+	}
+	std::cout << std::endl;
+}

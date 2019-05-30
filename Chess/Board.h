@@ -20,4 +20,5 @@ public:
 	void moveFigure(const char*, const char*);//
 	void viewSquareNumbers();
 	void viewSquarePositions();
+	void PrettyPrinting();
 };
