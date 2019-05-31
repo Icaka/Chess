@@ -27,6 +27,11 @@ const char Knight::getOwner()
 	return owner;
 }
 
+char* Knight::getPosition() const
+{
+	return position;
+}
+
 char Knight::getLetter() const
 {
 	if (owner == 'b')

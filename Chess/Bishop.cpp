@@ -28,6 +28,11 @@ const char Bishop::getOwner()
 	return owner;
 }
 
+char* Bishop::getPosition() const
+{
+	return position;
+}
+
 char Bishop::getLetter() const
 {
 	if (owner == 'b')

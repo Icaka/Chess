@@ -7,6 +7,8 @@ private:
 	const short movementNumbers[4] = { 9, -9, 11, -11 };
 	const char* type = "bishop";
 	char owner;
+	char* position;
+
 public:
 	Bishop(const char);
 
@@ -14,4 +16,5 @@ public:
 	const char* getType() override;
 	const char getOwner() override;
 	char getLetter() const override;
+	char* getPosition() const override;
 };

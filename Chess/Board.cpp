@@ -3,6 +3,11 @@
 
 Board::Board()
 {
+	figures = new FiguresPtr[maxFigures];
+	for (int i = 0; i < maxFigures; i++)
+		figures[i] = nullptr;
+
+
 	int squareNumber = 22;
 	char* givenPosition = new char[3];
 	givenPosition[2] = '\0';
@@ -40,6 +45,18 @@ Board::Board()
 		squareNumber = squareNumber + 2;
 	}
 	delete[] givenPosition;
+
+
+	Pawn *whitePawns = new Pawn[8];
+	short whitePawnRow = 6;
+	for (int i = 0; i < 8; i++)
+	{
+		std::cout << "created" << std::endl;
+		whitePawns[i].setOwner('w');
+		whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
+		figures[i] = &whitePawns[i];
+		//std::cout << figures[i]->getType() << std::endl;
+	}
 }
 
 void Board::visualise()
@@ -175,4 +192,16 @@ void Board::PrettyPrinting()
 		std::cout << pos1[j] << "        ";
 	}
 	std::cout << std::endl;
+}
+
+void Board::outputFigures()
+{
+	std::cout << "Figures:" << std::endl;
+	for (int i = 0; i < maxFigures; i++)
+	{
+		if (figures[i] != nullptr)
+		{
+			std::cout << figures[i]->getType() << ": " << figures[i]->getPosition() << std::endl;
+		}
+	}
 }

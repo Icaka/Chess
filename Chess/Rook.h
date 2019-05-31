@@ -7,6 +7,8 @@ private:
 	const short movementNumber = 10;
 	const char* type = "rook";
 	char owner;
+	char* position;
+
 public:
 	Rook(const char);
 
@@ -14,4 +16,5 @@ public:
 	const char* getType() override;
 	const char getOwner() override;
 	char getLetter() const override;
+	char* getPosition() const override;
 };

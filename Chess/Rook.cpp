@@ -32,6 +32,11 @@ const char Rook::getOwner()
 	return owner;
 }
 
+char* Rook::getPosition() const
+{
+	return position;
+}
+
 char Rook::getLetter() const
 {
 	if (owner == 'b')

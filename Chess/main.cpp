@@ -13,5 +13,6 @@ int main()
 	myBoard.viewSquarePositions();
 	cout << endl;
 	myBoard.PrettyPrinting();
+	myBoard.outputFigures();
 	return 0;
 }

@@ -7,11 +7,18 @@ private:
 	const short movementNumber = 10;
 	const char* type = "pawn";
 	char owner;
+	char* position;
+
 public:
-	Pawn(const char);
+	Pawn();
+	Pawn(const char, const char*);
+	//Pawn& operator=(const Pawn&);
 
 	bool checkIfValidMove(const short, const short) override;
 	const char* getType() override;
 	const char getOwner() override;
 	char getLetter() const override;
+	char* getPosition() const override;
+	void setPosition(const char*) override;
+	void setOwner(const char) override;
 };
