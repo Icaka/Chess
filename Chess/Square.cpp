@@ -8,6 +8,7 @@ Square::Square()
 
 	number = 0;
 	color = 'b';
+	occupiedBy = '0';
 }
 
 Square::Square(const char* pos, short num, char c)
@@ -18,6 +19,7 @@ Square::Square(const char* pos, short num, char c)
 	number = num;
 
 	color = c;
+	occupiedBy = '0';
 }
 
 Square::~Square()
@@ -62,4 +64,14 @@ short Square::getNumber() const
 char Square::getColor() const
 {
 	return color;
+}
+
+char Square::getOccupacy() const
+{
+	return occupiedBy;
+}
+
+void Square::setOccupacy(const char occ)
+{
+	occupiedBy = occ;
 }

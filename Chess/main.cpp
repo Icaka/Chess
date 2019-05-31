@@ -14,5 +14,6 @@ int main()
 	cout << endl;
 	myBoard.PrettyPrinting();
 	myBoard.outputFigures();
+	myBoard.PrettyPrinting();
 	return 0;
 }

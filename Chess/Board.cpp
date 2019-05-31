@@ -46,6 +46,7 @@ Board::Board()
 	}
 	delete[] givenPosition;
 
+	//--------------------------------------------------------------------------
 
 	Pawn *whitePawns = new Pawn[8];
 	short whitePawnRow = 6;
@@ -55,6 +56,7 @@ Board::Board()
 		whitePawns[i].setOwner('w');
 		whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
 		figures[i] = &whitePawns[i];
+		squares[whitePawnRow][i].setOccupacy('p');
 		//std::cout << figures[i]->getType() << std::endl;
 	}
 }
@@ -149,12 +151,24 @@ void Board::PrettyPrinting()
 		std::cout << "  " << rows - i << "  ";
 		for (int j = 0; j < cols; j++) // this "for" will be checking for the occupacy
 		{
-			if (squares[i][j].getColor() == 'b')
+			if (squares[i][j].getOccupacy() == '0')
 			{
-				std::cout << "* * * * *";
+				if (squares[i][j].getColor() == 'b')
+				{
+					std::cout << "* * * * *";
+				}
+				else {
+					std::cout << "         ";
+				}
 			}
 			else {
-				std::cout << "         ";
+				if (squares[i][j].getColor() == 'b')
+				{
+					std::cout << "* * " << squares[i][j].getOccupacy() << " * *";
+				}
+				else {
+					std::cout << "    " << squares[i][j].getOccupacy() << "    ";
+				}
 			}
 		}
 		std::cout << std::endl;
