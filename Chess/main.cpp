@@ -12,8 +12,12 @@ int main()
 	cout << endl;
 	myBoard.viewSquarePositions();
 	cout << endl;
-	myBoard.PrettyPrinting();
+	//myBoard.PrettyPrinting();
 	myBoard.outputFigures();
+	myBoard.PrettyPrinting();
+	myBoard.moveFigure("a2", "a3");
+	myBoard.moveFigure("a3", "a4");
+	myBoard.moveFigure("b4", "b5");
 	myBoard.PrettyPrinting();
 	return 0;
 }

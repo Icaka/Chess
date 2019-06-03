@@ -76,6 +76,55 @@ void Board::makeWhiteSquare()
 	std::cout << "* * * * *" << std::endl;
 }
 
+void Board::moveFigure(const char* p1, const char* p2)
+{
+
+	int letterIndex1, numberIndex1, letterIndex2, numberIndex2;
+	int movementNumber1, movementNumber2;
+
+	for (int i = 0; i < 8; i++) //letters
+	{
+		if (p1[0] == pos1[i])
+			letterIndex1 = i;
+		if (p2[0] == pos1[i])
+			letterIndex2 = i;
+	}
+	for (int i = 0; i < 8; i++) //numbers
+	{
+		if (p1[1] == pos2[i])
+			numberIndex1 = i;
+		if (p2[1] == pos2[i])
+			numberIndex2 = i;
+	}
+
+	//std::cout << letterIndex1 << ", " << numberIndex1 << std::endl;
+	//std::cout << 7 - numberIndex1 << ", " << letterIndex1 << std::endl;
+	//std::cout << 7 - numberIndex2 << ", " << letterIndex2 << std::endl;
+	//std::cout << figures[7 - numberIndex1][letterIndex1]->getType() << std::endl;
+	if (figures[7 - numberIndex1][letterIndex1] == nullptr)
+	{
+		std::cout << "position " << pos1[letterIndex1] << pos2[numberIndex1] << " is empty" << std::endl;
+	}
+	else {
+		movementNumber1 = 22 + (7 - numberIndex1) * 10 + letterIndex1;
+		movementNumber2 = 22 + (7 - numberIndex2) * 10 + letterIndex2;
+		//std::cout << movementNumber1 << ", " << movementNumber2 << std::endl;
+		if (figures[7 - numberIndex1][letterIndex1]->checkIfValidMove(movementNumber1, movementNumber2))
+		{
+			std::cout << "from " << pos1[letterIndex1] << pos2[numberIndex1] << ", " << figures[7 - numberIndex1][letterIndex1]->getType() << " goes to " << pos1[letterIndex2] << pos2[numberIndex2] << std::endl;
+			figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
+			//std::cout << figures[7 - numberIndex2][letterIndex2]->getType() << std::endl;
+			figures[7 - numberIndex1][letterIndex1] = nullptr;
+		}
+		else {
+			std::cout << "invalid move" << std::endl;
+		}
+		//figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
+		//std::cout << figures[7 - numberIndex2][letterIndex2]->getType() << std::endl;
+		//figures[7 - numberIndex1][letterIndex1] = nullptr;
+	}
+}
+
 void Board::viewSquareNumbers()
 {
 	for (int i = 0; i < 8; i++)
