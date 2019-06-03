@@ -12,7 +12,6 @@ private:
 public:
 	Pawn();
 	Pawn(const char, const char*);
-	//Pawn& operator=(const Pawn&);
 
 	bool checkIfValidMove(const short, const short) override;
 	const char* getType() override;

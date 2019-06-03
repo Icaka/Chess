@@ -1,8 +1,18 @@
 #include "Knight.h"
+#include <iostream>
 
-Knight::Knight(const char c)
+Knight::Knight()
+{
+	owner = 'n';
+	position = new char[3];
+	strcpy_s(position, strlen("no") + 1, "no");
+}
+
+Knight::Knight(const char c, const char* pos)
 {
 	owner = c;
+	position = new char[3];
+	strcpy_s(position, strlen(pos) + 1, pos);
 }
 
 bool Knight::checkIfValidMove(const short num1, const short num2)
@@ -30,6 +40,17 @@ const char Knight::getOwner()
 char* Knight::getPosition() const
 {
 	return position;
+}
+
+void Knight::setPosition(const char* newPos)
+{
+	position = new char[strlen(newPos) + 1];
+	strcpy_s(position, strlen(newPos) + 1, newPos);
+}
+
+void Knight::setOwner(const char newOwner)
+{
+	owner = newOwner;
 }
 
 char Knight::getLetter() const

@@ -1,6 +1,7 @@
 #pragma once
 #include "Square.h"
 #include "Pawn.h"
+#include "Knight.h"
 
 const char pos1[8] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
 const char pos2[8] = { '1', '2', '3', '4', '5', '6', '7', '8' };
@@ -23,6 +24,7 @@ public:
 	void makeBlackSquare();
 	void makeWhiteSquare();
 	void moveFigure(const char*, const char*);//
+	void addFigure(FiguresPtr, int, int);
 	void viewSquareNumbers();
 	void viewSquarePositions();
 	void PrettyPrinting();

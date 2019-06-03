@@ -8,16 +8,17 @@ int main()
 	cout << "Hello" << endl;
 	Board myBoard;
 	myBoard.visualise();
-	myBoard.viewSquareNumbers();
+	//myBoard.viewSquareNumbers();
 	cout << endl;
-	myBoard.viewSquarePositions();
+	//myBoard.viewSquarePositions();
 	cout << endl;
 	//myBoard.PrettyPrinting();
-	myBoard.outputFigures();
+	//myBoard.outputFigures();
 	myBoard.PrettyPrinting();
 	myBoard.moveFigure("a2", "a3");
 	myBoard.moveFigure("a3", "a4");
 	myBoard.moveFigure("b4", "b5");
+	myBoard.moveFigure("g1", "f3");
 	myBoard.PrettyPrinting();
 	return 0;
 }

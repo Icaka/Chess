@@ -4,12 +4,12 @@
 
 Board::Board()
 {
-	figures = new FiguresPtr*[8];
-	for (int i = 0; i < 8; i++)
-		figures[i] = new FiguresPtr[8];
+	figures = new FiguresPtr*[rows];
+	for (int i = 0; i < rows; i++)
+		figures[i] = new FiguresPtr[cols];
 
-	for (int i = 0; i < 8; i++)
-		for(int j = 0; j < 8; j++)
+	for (int i = 0; i < rows; i++)
+		for(int j = 0; j < cols; j++)
 			figures[i][j] = nullptr;
 
 
@@ -32,16 +32,27 @@ Board::Board()
 	delete[] givenPosition;
 
 	//--------------------------------------------------------------------------
+	Knight *whiteKnights = new Knight[2];
+	whiteKnights[0].setOwner('b');
+	whiteKnights[1].setOwner('w');
 
 	Pawn *whitePawns = new Pawn[8];
+	Pawn test;
+	test.setOwner('w');
 	short whitePawnRow = 6;
 	for (int i = 0; i < 8; i++)
 	{
-		std::cout << "created" << std::endl;
+		//std::cout << "created" << std::endl;
 		whitePawns[i].setOwner('w');
 		whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
 		figures[whitePawnRow][i] = &whitePawns[i];
 	}
+	addFigure(&test, 2, 2);
+	std::cout << "test: " << figures[2][2]->getType()  << ": " << figures[2][2]->getLetter() << ", " << figures[2][2]->getOwner() << std::endl;
+	figures[7][1] = &whiteKnights[0];
+	figures[7][6] = &whiteKnights[1];
+	//figures[7][1] = nullptr;
+	//std::cout << "knight: " << figures[7][6]->getLetter() << ", " << figures[7][6]->getType() <<std::endl;
 }
 
 void Board::visualise()
@@ -151,6 +162,7 @@ void Board::viewSquarePositions()
 
 void Board::PrettyPrinting()
 {
+	std::cout << "whoa" << std::endl;
 	for (int i = 0; i < rows; i++)
 	{
 		std::cout << "     ";
@@ -195,6 +207,8 @@ void Board::PrettyPrinting()
 			else {
 				if (squareColor(i, j))
 				{
+					//if (i == 7)
+						//std::cout << "who" << std::endl;
 					std::cout << "*   " << figures[i][j]->getLetter() << "   *";
 				}
 				else {
@@ -251,6 +265,17 @@ void Board::outputFigures()
 				std::cout << figures[i][j]->getType() << ": " << figures[i][j]->getPosition() << std::endl;
 			}
 		}
+	}
+}
+
+void Board::addFigure(FiguresPtr fPtr, int pos1, int pos2)
+{
+	if (figures[pos1][pos2] == nullptr)
+	{
+		figures[pos1][pos2] = fPtr;
+	}
+	else {
+		std::cout << "Position [" << pos1 << "][" << pos2 << "] is taken" << std::endl;
 	}
 }
 
