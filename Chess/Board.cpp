@@ -1,44 +1,29 @@
 #include "Board.h"
 #include <iostream>
 
+
 Board::Board()
 {
-	figures = new FiguresPtr[maxFigures];
-	for (int i = 0; i < maxFigures; i++)
-		figures[i] = nullptr;
+	figures = new FiguresPtr*[8];
+	for (int i = 0; i < 8; i++)
+		figures[i] = new FiguresPtr[8];
+
+	for (int i = 0; i < 8; i++)
+		for(int j = 0; j < 8; j++)
+			figures[i][j] = nullptr;
 
 
 	int squareNumber = 22;
 	char* givenPosition = new char[3];
 	givenPosition[2] = '\0';
-	char givenColor;
 	for (int i = 0; i < rows; i++)
 	{
 		givenPosition[1] = pos2[rows - (i + 1)];
 		for (int j = 0; j < cols; j++)
 		{
 			givenPosition[0] = pos1[j];
-			if (i % 2 == 0)
-			{
-				if (j % 2 == 0)
-				{
-					givenColor = 'w';
-				}
-				else {
-					givenColor = 'b';
-				}
-			}
-			else {
-				if (j % 2 == 0)
-				{
-					givenColor = 'b';
-				}
-				else {
-					givenColor = 'w';
-				}
-			}
 			//givenPosition[2] = '\0';
-			Square temp(givenPosition, squareNumber, givenColor);
+			Square temp(givenPosition, squareNumber);
 			squares[i][j] = temp;
 			squareNumber++;
 		}
@@ -55,9 +40,7 @@ Board::Board()
 		std::cout << "created" << std::endl;
 		whitePawns[i].setOwner('w');
 		whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
-		figures[i] = &whitePawns[i];
-		squares[whitePawnRow][i].setOccupacy('p');
-		//std::cout << figures[i]->getType() << std::endl;
+		figures[whitePawnRow][i] = &whitePawns[i];
 	}
 }
 
@@ -67,12 +50,11 @@ void Board::visualise()
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			if (squares[i][j].getColor() == 'b')
+			if (squareColor(i, j))
 			{
 				std::cout << "  1  ";
 			}
-			if (squares[i][j].getColor() == 'w')
-			{
+			else {
 				std::cout << "  0  ";
 			}
 		}
@@ -125,7 +107,7 @@ void Board::PrettyPrinting()
 		std::cout << "     ";
 		for (int j = 0; j < cols; j++)
 		{
-			if (squares[i][j].getColor() == 'b')
+			if (squareColor(i, j))
 			{
 				std::cout << "* * * * *";
 			}
@@ -138,9 +120,9 @@ void Board::PrettyPrinting()
 		std::cout << "     ";
 		for (int j = 0; j < cols; j++)
 		{
-			if (squares[i][j].getColor() == 'b')
+			if (squareColor(i, j))
 			{
-				std::cout << "* * * * *";
+				std::cout << "* *   * *";
 			}
 			else {
 				std::cout << "         ";
@@ -151,23 +133,23 @@ void Board::PrettyPrinting()
 		std::cout << "  " << rows - i << "  ";
 		for (int j = 0; j < cols; j++) // this "for" will be checking for the occupacy
 		{
-			if (squares[i][j].getOccupacy() == '0')
+			if (figures[i][j] == nullptr)
 			{
-				if (squares[i][j].getColor() == 'b')
+				if (squareColor(i, j))
 				{
-					std::cout << "* * * * *";
+					std::cout << "*       *";
 				}
 				else {
 					std::cout << "         ";
 				}
 			}
 			else {
-				if (squares[i][j].getColor() == 'b')
+				if (squareColor(i, j))
 				{
-					std::cout << "* * " << squares[i][j].getOccupacy() << " * *";
+					std::cout << "*   " << figures[i][j]->getLetter() << "   *";
 				}
 				else {
-					std::cout << "    " << squares[i][j].getOccupacy() << "    ";
+					std::cout << "    " << figures[i][j]->getLetter() << "    ";
 				}
 			}
 		}
@@ -176,9 +158,9 @@ void Board::PrettyPrinting()
 		std::cout << "     ";
 		for (int j = 0; j < cols; j++)
 		{
-			if (squares[i][j].getColor() == 'b')
+			if (squareColor(i, j))
 			{
-				std::cout << "* * * * *";
+				std::cout << "* *   * *";
 			}
 			else {
 				std::cout << "         ";
@@ -189,7 +171,7 @@ void Board::PrettyPrinting()
 		std::cout << "     ";
 		for (int j = 0; j < cols; j++)
 		{
-			if (squares[i][j].getColor() == 'b')
+			if (squareColor(i, j))
 			{
 				std::cout << "* * * * *";
 			}
@@ -211,11 +193,37 @@ void Board::PrettyPrinting()
 void Board::outputFigures()
 {
 	std::cout << "Figures:" << std::endl;
-	for (int i = 0; i < maxFigures; i++)
+	for (int i = 0; i < 8; i++)
 	{
-		if (figures[i] != nullptr)
+		for (int j = 0; j < 8; j++)
 		{
-			std::cout << figures[i]->getType() << ": " << figures[i]->getPosition() << std::endl;
+			if (figures[i][j] != nullptr)
+			{
+				std::cout << figures[i][j]->getType() << ": " << figures[i][j]->getPosition() << std::endl;
+			}
+		}
+	}
+}
+
+bool Board::squareColor(int i, int j)
+{
+	if (i % 2 == 0)
+	{
+		if (j % 2 == 0)
+		{
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	else {
+		if (j % 2 == 0)
+		{
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 }

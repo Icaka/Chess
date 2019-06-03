@@ -14,7 +14,7 @@ private:
 	static const int rows = 8;
 	static const int cols = 8;
 	Square squares[rows][cols];
-	FiguresPtr* figures;
+	FiguresPtr** figures;
 
 public:
 	Board();
@@ -27,4 +27,5 @@ public:
 	void viewSquarePositions();
 	void PrettyPrinting();
 	void outputFigures();
+	bool squareColor(int, int); // will return true if black square and false if white square
 };

@@ -7,19 +7,14 @@ Square::Square()
 	position = '\0';
 
 	number = 0;
-	color = 'b';
-	occupiedBy = '0';
 }
 
-Square::Square(const char* pos, short num, char c)
+Square::Square(const char* pos, short num)
 {
 	position = new char[strlen(pos) + 1];
 	strcpy_s(position, strlen(pos) + 1, pos);
 	
 	number = num;
-
-	color = c;
-	occupiedBy = '0';
 }
 
 Square::~Square()
@@ -43,7 +38,7 @@ void Square::copy(const Square& newSquare)
 	strcpy_s(position, strlen(newSquare.getPosition()) + 1, newSquare.getPosition());
 
 	number = newSquare.getNumber();
-	color = newSquare.getColor();
+	
 }
 
 void Square::clear()
@@ -61,17 +56,3 @@ short Square::getNumber() const
 	return number;
 }
 
-char Square::getColor() const
-{
-	return color;
-}
-
-char Square::getOccupacy() const
-{
-	return occupiedBy;
-}
-
-void Square::setOccupacy(const char occ)
-{
-	occupiedBy = occ;
-}

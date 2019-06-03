@@ -5,11 +5,9 @@ class Square
 private:
 	char* position;
 	short number;
-	char color;
-	char occupiedBy;
 public:
 	Square();
-	Square(const char*, short, char);
+	Square(const char*, short);
 	~Square();
 	Square& operator=(const Square&);
 
@@ -17,8 +15,6 @@ public:
 	void clear();
 	char* getPosition() const;
 	short getNumber() const;
-	char getColor() const;
+
 	void output();
-	char getOccupacy() const;
-	void setOccupacy(const char);
 };
