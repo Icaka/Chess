@@ -17,4 +17,6 @@ public:
 	const char getOwner() override;
 	char getLetter() const override;
 	char* getPosition() const override;
+	void setPosition(const char*) override;
+	void setOwner(const char) override;
 };

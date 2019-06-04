@@ -37,8 +37,7 @@ Board::Board()
 	whiteKnights[1].setOwner('w');
 
 	Pawn *whitePawns = new Pawn[8];
-	Pawn test;
-	test.setOwner('w');
+
 	short whitePawnRow = 6;
 	for (int i = 0; i < 8; i++)
 	{
@@ -47,12 +46,21 @@ Board::Board()
 		whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
 		figures[whitePawnRow][i] = &whitePawns[i];
 	}
-	addFigure(&test, 2, 2);
-	std::cout << "test: " << figures[2][2]->getType()  << ": " << figures[2][2]->getLetter() << ", " << figures[2][2]->getOwner() << std::endl;
+	testPrinting();
+	PrettyPrinting();
 	figures[7][1] = &whiteKnights[0];
 	figures[7][6] = &whiteKnights[1];
 	//figures[7][1] = nullptr;
 	//std::cout << "knight: " << figures[7][6]->getLetter() << ", " << figures[7][6]->getType() <<std::endl;
+}
+
+Board::~Board()
+{
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] figures[i];
+	}
+	delete[] figures;
 }
 
 void Board::visualise()
@@ -148,6 +156,25 @@ void Board::viewSquareNumbers()
 	}
 }
 
+void Board::testPrinting()
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (figures[i][j] != nullptr)
+			{
+				std::cout << figures[i][j]->getLetter() << "  ";
+			}
+			else {
+				std::cout << "0  ";
+			}
+		}
+		std::cout << std::endl;
+	}
+}
+
+/*
 void Board::viewSquarePositions()
 {
 	for (int i = 0; i < rows; i++)
@@ -159,6 +186,7 @@ void Board::viewSquarePositions()
 		std::cout << std::endl;
 	}
 }
+*/
 
 void Board::PrettyPrinting()
 {
@@ -207,8 +235,6 @@ void Board::PrettyPrinting()
 			else {
 				if (squareColor(i, j))
 				{
-					//if (i == 7)
-						//std::cout << "who" << std::endl;
 					std::cout << "*   " << figures[i][j]->getLetter() << "   *";
 				}
 				else {

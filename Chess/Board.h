@@ -2,6 +2,8 @@
 #include "Square.h"
 #include "Pawn.h"
 #include "Knight.h"
+#include "Rook.h"
+#include "Bishop.h"
 
 const char pos1[8] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
 const char pos2[8] = { '1', '2', '3', '4', '5', '6', '7', '8' };
@@ -19,6 +21,7 @@ private:
 
 public:
 	Board();
+	~Board();
 
 	void visualise();
 	void makeBlackSquare();
@@ -26,7 +29,8 @@ public:
 	void moveFigure(const char*, const char*);//
 	void addFigure(FiguresPtr, int, int);
 	void viewSquareNumbers();
-	void viewSquarePositions();
+	void testPrinting();
+	//void viewSquarePositions();
 	void PrettyPrinting();
 	void outputFigures();
 	bool squareColor(int, int); // will return true if black square and false if white square

@@ -1,8 +1,11 @@
 #include "Rook.h"
+#include <iostream>
 
 Rook::Rook(const char c)
 {
 	owner = c;
+	position = new char[1];
+	position = '\0';
 }
 
 bool Rook::checkIfValidMove(const short num1, const short num2)
@@ -35,6 +38,17 @@ const char Rook::getOwner()
 char* Rook::getPosition() const
 {
 	return position;
+}
+
+void Rook::setPosition(const char* newPos)
+{
+	position = new char[strlen(newPos) + 1];
+	strcpy_s(position, strlen(newPos) + 1, newPos);
+}
+
+void Rook::setOwner(const char newOwner)
+{
+	owner = newOwner;
 }
 
 char Rook::getLetter() const
