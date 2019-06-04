@@ -17,9 +17,12 @@ int main()
 	cout << endl;
 	Rook rook('w');
 	Bishop bishop('b');
+	Queen queen('w');
+	myBoard.addFigure(&queen, 0, 3);
 	myBoard.addFigure(&bishop, 0, 2);
 	myBoard.addFigure(&rook, 0, 5);
 	
+	myBoard.moveFigure("d8", "e7");
 	myBoard.moveFigure("c8", "b7");
 	myBoard.moveFigure("b7", "c6");
 	myBoard.moveFigure("f8", "f4");
