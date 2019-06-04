@@ -11,6 +11,7 @@ private:
 
 public:
 	Pawn();
+	Pawn(const char);
 	Pawn(const char, const char*);
 
 	bool checkIfValidMove(const short, const short) override;

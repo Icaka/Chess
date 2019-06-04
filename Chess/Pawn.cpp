@@ -8,6 +8,14 @@ Pawn::Pawn()
 	position = '\0';
 }
 
+Pawn::Pawn(const char newOwner)
+{
+	owner = newOwner;
+
+	position = new char[1];
+	position = '\0';
+}
+
 Pawn::Pawn(const char c, const char* pos)
 {
 	owner = c;

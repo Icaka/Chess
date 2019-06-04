@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Board.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -35,5 +35,8 @@ int main()
 	myBoard.moveFigure("g1", "f3");
 	myBoard.testPrinting();
 	myBoard.PrettyPrinting();
+
+	Game myGame;
+	myGame.Print();
 	return 0;
 }
