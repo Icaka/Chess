@@ -5,6 +5,7 @@
 #include "Rook.h"
 #include "Bishop.h"
 #include "Queen.h"
+#include "King.h"
 
 const char pos1[8] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
 const char pos2[8] = { '1', '2', '3', '4', '5', '6', '7', '8' };

@@ -18,10 +18,13 @@ int main()
 	Rook rook('w');
 	Bishop bishop('b');
 	Queen queen('w');
+	King king('b');
+	myBoard.addFigure(&king, 0, 4);
 	myBoard.addFigure(&queen, 0, 3);
 	myBoard.addFigure(&bishop, 0, 2);
 	myBoard.addFigure(&rook, 0, 5);
 	
+	myBoard.moveFigure("e8", "f7");
 	myBoard.moveFigure("d8", "e7");
 	myBoard.moveFigure("c8", "b7");
 	myBoard.moveFigure("b7", "c6");
