@@ -28,11 +28,11 @@ public:
 	void visualise();
 	void makeBlackSquare();
 	void makeWhiteSquare();
-	void moveFigure(const char*, const char*);//
+	void moveFigure(const char*, const char*);
+	bool checkForCollisions(const short, const short, const short, const short);
 	void addFigure(FiguresPtr, int, int);
 	void viewSquareNumbers();
 	void testPrinting();
-	//void viewSquarePositions();
 	void PrettyPrinting();
 	void outputFigures();
 	bool squareColor(int, int); // will return true if black square and false if white square

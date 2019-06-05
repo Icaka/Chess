@@ -12,25 +12,6 @@ Board::Board()
 		for(int j = 0; j < cols; j++)
 			figures[i][j] = nullptr;
 
-
-	int squareNumber = 22;
-	char* givenPosition = new char[3];
-	givenPosition[2] = '\0';
-	for (int i = 0; i < rows; i++)
-	{
-		givenPosition[1] = pos2[rows - (i + 1)];
-		for (int j = 0; j < cols; j++)
-		{
-			givenPosition[0] = pos1[j];
-			//givenPosition[2] = '\0';
-			Square temp(givenPosition, squareNumber);
-			squares[i][j] = temp;
-			squareNumber++;
-		}
-		squareNumber = squareNumber + 2;
-	}
-	delete[] givenPosition;
-
 	//--------------------------------------------------------------------------
 	Knight *whiteKnights = new Knight[2];
 	whiteKnights[0].setOwner('b');
@@ -41,17 +22,16 @@ Board::Board()
 	short whitePawnRow = 6;
 	for (int i = 0; i < 8; i++)
 	{
-		//std::cout << "created" << std::endl;
 		whitePawns[i].setOwner('w');
-		whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
+		//whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
 		figures[whitePawnRow][i] = &whitePawns[i];
 	}
 	testPrinting();
 	PrettyPrinting();
 	figures[7][1] = &whiteKnights[0];
 	figures[7][6] = &whiteKnights[1];
-	//figures[7][1] = nullptr;
-	//std::cout << "knight: " << figures[7][6]->getLetter() << ", " << figures[7][6]->getType() <<std::endl;
+	figures[0][7] = new Pawn;
+	figures[0][7]->setOwner('b');
 }
 
 Board::~Board()
@@ -116,10 +96,6 @@ void Board::moveFigure(const char* p1, const char* p2)
 			numberIndex2 = i;
 	}
 
-	//std::cout << letterIndex1 << ", " << numberIndex1 << std::endl;
-	//std::cout << 7 - numberIndex1 << ", " << letterIndex1 << std::endl;
-	//std::cout << 7 - numberIndex2 << ", " << letterIndex2 << std::endl;
-	//std::cout << figures[7 - numberIndex1][letterIndex1]->getType() << std::endl;
 	if (figures[7 - numberIndex1][letterIndex1] == nullptr)
 	{
 		std::cout << "position " << pos1[letterIndex1] << pos2[numberIndex1] << " is empty" << std::endl;
@@ -127,21 +103,121 @@ void Board::moveFigure(const char* p1, const char* p2)
 	else {
 		movementNumber1 = 22 + (7 - numberIndex1) * 10 + letterIndex1;
 		movementNumber2 = 22 + (7 - numberIndex2) * 10 + letterIndex2;
-		//std::cout << movementNumber1 << ", " << movementNumber2 << std::endl;
+		
 		if (figures[7 - numberIndex1][letterIndex1]->checkIfValidMove(movementNumber1, movementNumber2))
 		{
-			std::cout << "from " << pos1[letterIndex1] << pos2[numberIndex1] << ", " << figures[7 - numberIndex1][letterIndex1]->getType() << " goes to " << pos1[letterIndex2] << pos2[numberIndex2] << std::endl;
-			figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
-			//std::cout << figures[7 - numberIndex2][letterIndex2]->getType() << std::endl;
-			figures[7 - numberIndex1][letterIndex1] = nullptr;
+			if (checkForCollisions(7 - numberIndex1, letterIndex1, 7 - numberIndex2, letterIndex2)) // returns true if it encounters collisions
+			{
+				std::cout << "this figure can't jump over others" << std::endl;
+			}
+			else {
+				if (figures[7 - numberIndex2][letterIndex2] == nullptr)
+				{
+					std::cout << "from " << pos1[letterIndex1] << pos2[numberIndex1] << ", " << figures[7 - numberIndex1][letterIndex1]->getType() << " goes to " << pos1[letterIndex2] << pos2[numberIndex2] << std::endl;
+					figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
+					figures[7 - numberIndex1][letterIndex1] = nullptr;
+				}
+				else {
+					if (figures[7 - numberIndex2][letterIndex2]->getOwner() != figures[7 - numberIndex1][letterIndex1]->getOwner())
+					{
+						std::cout << "from " << pos1[letterIndex1] << pos2[numberIndex1] << ", " << figures[7 - numberIndex1][letterIndex1]->getType() << " goes to " << pos1[letterIndex2] << pos2[numberIndex2] << std::endl;
+						figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
+						figures[7 - numberIndex1][letterIndex1] = nullptr;
+					}
+					else {
+						std::cout << "friendly fire is off" << std::endl;
+					}
+				}
+			}
 		}
 		else {
 			std::cout << "invalid move" << std::endl;
 		}
-		//figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
-		//std::cout << figures[7 - numberIndex2][letterIndex2]->getType() << std::endl;
-		//figures[7 - numberIndex1][letterIndex1] = nullptr;
 	}
+}
+
+bool Board::checkForCollisions(const short i1, const short j1, const short i2, const short j2)
+{
+	if (!strcmp(figures[i1][j1]->getType(), "pawn") || !strcmp(figures[i1][j1]->getType(), "knight") || !strcmp(figures[i1][j1]->getType(), "king"))
+	{
+		return false;
+	}
+
+	if (!strcmp(figures[i1][j1]->getType(), "rook") || !strcmp(figures[i1][j1]->getType(), "queen")) // checking the rook and queen collisions
+	{
+		if (i2 > (i1 + 1))
+		{
+			for (int i = i2 - 1; i > i1; i--)
+				if (figures[i][j1] != nullptr)
+					return true;
+		}
+		if (i2 < (i1 - 1))
+		{
+			for (int i = i2 + 1; i < i1; i++)
+				if (figures[i][j1] != nullptr)
+					return true;
+		}
+		if (j2 > (j1 + 1))
+		{
+			for (int j = j2 - 1; j > j1; j--)
+				if (figures[i1][j] != nullptr)
+					return true;
+		}
+		if (j2 < (j1 - 1))
+		{
+			for (int j = j2 + 1; j < j1; j++)
+				if (figures[i1][j] != nullptr)
+					return true;
+		}
+	}
+
+	if (!strcmp(figures[i1][j1]->getType(), "bishop") || !strcmp(figures[i1][j1]->getType(), "queen")) // checking the bishop and queen collisions
+	{
+		if (i2 > (i1 + 1))
+		{
+			int i = 1;
+			if(j2 > j1)
+			{
+				while (i1 < (i2 - i))
+				{
+					if (figures[i2 - i][j2 - i] != nullptr)
+						return true;
+					i++;
+				}
+			}
+			else {
+				while (i1 < (i2 - i))
+				{
+					if (figures[i2 - i][j2 + i] != nullptr)
+						return true;
+					i++;
+				}
+			}
+		}
+		if (i2 < (i1 - 1))
+		{
+			int i = 1;
+			if (j2 > j1)
+			{
+				while (i1 > (i2 + i))
+				{
+					if (figures[i2 + i][j2 - i] != nullptr)
+						return true;
+					i++;
+				}
+			}
+			else {
+				while (i1 > (i2 + i))
+				{
+					if (figures[i2 + i][j2 + i])
+						return true;
+					i++;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 void Board::viewSquareNumbers()
@@ -150,7 +226,7 @@ void Board::viewSquareNumbers()
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			std::cout << " " << squares[i][j].getNumber() << " ";
+			std::cout << " " << 22 + (i * 10) + j << " ";
 		}
 		std::cout << std::endl;
 	}
@@ -173,20 +249,6 @@ void Board::testPrinting()
 		std::cout << std::endl;
 	}
 }
-
-/*
-void Board::viewSquarePositions()
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			std::cout << " " << squares[i][j].getPosition() << " ";
-		}
-		std::cout << std::endl;
-	}
-}
-*/
 
 void Board::PrettyPrinting()
 {

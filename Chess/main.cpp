@@ -11,19 +11,19 @@ int main()
 	myBoard.addFigure(&test2, 2, 3);
 	cout << "yo" << endl;
 	//myBoard.visualise();
-	//myBoard.viewSquareNumbers();
+	myBoard.viewSquareNumbers();
 	cout << endl;
 	//myBoard.viewSquarePositions();
 	cout << endl;
-	Rook rook('w');
-	Bishop bishop('b');
+	Rook rook('b');
+	Bishop bishop('w');
 	Queen queen('w');
 	King king('b');
 	myBoard.addFigure(&king, 0, 4);
-	myBoard.addFigure(&queen, 0, 3);
+	myBoard.addFigure(&queen, 7, 3);
 	myBoard.addFigure(&bishop, 0, 2);
-	myBoard.addFigure(&rook, 0, 5);
-	
+	myBoard.addFigure(&rook, 7, 4);
+	/*
 	myBoard.moveFigure("e8", "f7");
 	myBoard.moveFigure("d8", "e7");
 	myBoard.moveFigure("c8", "b7");
@@ -33,10 +33,17 @@ int main()
 	myBoard.moveFigure("a3", "a4");
 	myBoard.moveFigure("b4", "b5");
 	myBoard.moveFigure("g1", "f3");
+	*/
+	//myBoard.moveFigure("h8", "g8");
+	//myBoard.moveFigure("e1", "e3");
+	//myBoard.moveFigure("e1", "f1");
+	//myBoard.moveFigure("g1", "f3");
+	myBoard.moveFigure("d1", "c1");
+	myBoard.moveFigure("c1", "a3");
 	myBoard.testPrinting();
 	myBoard.PrettyPrinting();
 
-	Game myGame;
-	myGame.Print();
+	//Game myGame;
+	//myGame.Print();
 	return 0;
 }

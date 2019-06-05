@@ -19,7 +19,7 @@ bool Queen::checkIfValidMove(const short num1, const short num2)
 			return true;
 	}
 
-	if ((num2 / 10) == (num1 / 10)) // now checking if it's on the same row as the rook
+	if ((num2 / 10) == (num1 / 10))
 		return true;
 
 	for (int i = 1; i < 8; i++)
