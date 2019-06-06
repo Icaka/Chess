@@ -28,7 +28,7 @@ public:
 	void visualise();
 	void makeBlackSquare();
 	void makeWhiteSquare();
-	void moveFigure(const char*, const char*);
+	bool moveFigure(const char*, const char*);
 	//bool checkForCollisions(const short, const short, const short, const short);
 	void addFigure(FiguresPtr, int, int);
 	void viewSquareNumbers();
@@ -36,4 +36,7 @@ public:
 	void PrettyPrinting();
 	void outputFigures();
 	bool squareColor(int, int); // will return true if black square and false if white square
+	char getColorByPosition(const char*);
+	bool isThereBlackKing();
+	bool isThereWhiteKing();
 };

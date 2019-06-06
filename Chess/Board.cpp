@@ -77,7 +77,7 @@ void Board::makeWhiteSquare()
 	std::cout << "* * * * *" << std::endl;
 }
 
-void Board::moveFigure(const char* p1, const char* p2)
+bool Board::moveFigure(const char* p1, const char* p2)
 {
 
 	int letterIndex1, numberIndex1, letterIndex2, numberIndex2;
@@ -101,6 +101,7 @@ void Board::moveFigure(const char* p1, const char* p2)
 	if (figures[7 - numberIndex1][letterIndex1] == nullptr)
 	{
 		std::cout << "position " << pos1[letterIndex1] << pos2[numberIndex1] << " is empty" << std::endl;
+		return false;
 	}
 	else {
 	
@@ -111,6 +112,7 @@ void Board::moveFigure(const char* p1, const char* p2)
 				std::cout << "from " << pos1[letterIndex1] << pos2[numberIndex1] << ", " << figures[7 - numberIndex1][letterIndex1]->getType() << " goes to " << pos1[letterIndex2] << pos2[numberIndex2] << std::endl;
 				figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
 				figures[7 - numberIndex1][letterIndex1] = nullptr;
+				return true;
 			}
 			else {
 				if (figures[7 - numberIndex2][letterIndex2]->getOwner() != figures[7 - numberIndex1][letterIndex1]->getOwner())
@@ -118,14 +120,17 @@ void Board::moveFigure(const char* p1, const char* p2)
 					std::cout << "from " << pos1[letterIndex1] << pos2[numberIndex1] << ", " << figures[7 - numberIndex1][letterIndex1]->getType() << " goes to " << pos1[letterIndex2] << pos2[numberIndex2] << std::endl;
 					figures[7 - numberIndex2][letterIndex2] = figures[7 - numberIndex1][letterIndex1];
 					figures[7 - numberIndex1][letterIndex1] = nullptr;
+					return true;
 				}
 				else {
 					std::cout << "friendly fire is off" << std::endl;
+					return false;
 				}
 			}
 		}
 		else {
 			std::cout << "invalid move" << std::endl;
+			return false;
 		}
 	}
 }
@@ -164,7 +169,7 @@ void Board::testPrinting()
 
 void Board::PrettyPrinting()
 {
-	std::cout << "whoa" << std::endl;
+	
 	for (int i = 0; i < rows; i++)
 	{
 		std::cout << "     ";
@@ -300,4 +305,60 @@ bool Board::squareColor(int i, int j)
 			return false;
 		}
 	}
+}
+
+char Board::getColorByPosition(const char* thePos)
+{
+	int letterIndex1, numberIndex1;
+
+	for (int i = 0; i < 8; i++) //letters
+	{
+		if (thePos[0] == pos1[i])
+			letterIndex1 = i;
+	}
+	for (int i = 0; i < 8; i++) //numbers
+	{
+		if (thePos[1] == pos2[i])
+			numberIndex1 = i;
+	}
+
+	return figures[7 - numberIndex1][letterIndex1]->getOwner();
+}
+
+bool Board::isThereBlackKing()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (figures[i][j] != nullptr)
+			{
+				if (figures[i][j]->getOwner() == 'b')
+					if (!strcmp(figures[i][j]->getType(), "king"))
+					{
+						return true;
+					}
+			}
+		}
+	}
+	return false;
+}
+
+bool Board::isThereWhiteKing()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (figures[i][j] != nullptr)
+			{
+				if (figures[i][j]->getOwner() == 'w')
+					if (!strcmp(figures[i][j]->getType(), "king"))
+					{
+						return true;
+					}
+			}
+		}
+	}
+	return false;
 }

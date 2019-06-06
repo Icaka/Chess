@@ -8,6 +8,7 @@ private:
 	const char* type = "pawn";
 	char owner;
 	char* position;
+	bool firstMove = true;
 	bool eventuallyAttackingKing = false;
 
 public:

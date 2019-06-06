@@ -28,34 +28,74 @@ bool Pawn::checkIfValidMove(const short i1, const short j1, const short i2, cons
 {
 	if (owner == 'b')
 	{
+		if ((i2 - 2) == i1)
+		{
+			if (firstMove)
+			{
+				if (j1 == j2)
+				{
+					if (figures[i2][j2] == nullptr)
+					{
+						firstMove = false;
+						return true;
+					}
+				}
+			}
+		}
 		if ((i2 - 1) == i1)
 		{
 			if(j1 == j2)
 				if(figures[i2][j2] == nullptr)
+				{
+					firstMove = false;
 					return true;
+				}
 			if ((j1 == j2 - 1) || (j1 == j2 + 1))
+			{
 				if (figures[i2][j2] != nullptr)
 				{
-					if (figures[i2][j2] != nullptr)
-						return true;
-					if (eventuallyAttackingKing)
-					{
-						eventuallyAttackingKing = false;
-						return true;
-					}
+					firstMove = false;
+					return true;
 				}
+				if (eventuallyAttackingKing)
+				{
+					eventuallyAttackingKing = false;
+					firstMove = false;
+					return true;
+				}
+			}
 		}
 	}
 	else {
+		if ((i2 + 2) == i1)
+		{
+			if (firstMove)
+			{
+				if (j1 == j2)
+				{
+					if (figures[i2][j2] == nullptr)
+					{
+						firstMove = false;
+						return true;
+					}
+				}
+			}
+		}
 		if ((i2 + 1) == i1)
 		{
 			if (j1 == j2)
 				if (figures[i2][j2] == nullptr)
+				{
+					firstMove = false;
 					return true;
+				}
 			if ((j1 == j2 - 1) || (j1 == j2 + 1))
 			{
 				if (figures[i2][j2] != nullptr)
+				{
+					firstMove = false;
 					return true;
+				}
 				if (eventuallyAttackingKing)
 				{
 					eventuallyAttackingKing = false;
