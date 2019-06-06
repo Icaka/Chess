@@ -10,8 +10,8 @@ Rook::Rook(const char c)
 
 bool Rook::checkIfValidMove(const short i1, const short j1, const short i2, const short j2, Figure*** figures)
 {
-	int num1 = 22 + (7 - i1) * 10 + j1;
-	int num2 = 22 + (7 - i2) * 10 + j2;
+	int num1 = 22 + i1 * 10 + j1;
+	int num2 = 22 + i2 * 10 + j2;
 	for (int i = 1; i < 8; i++)
 	{
 		if ((num2 + i * movementNumber) == num1)
@@ -75,6 +75,10 @@ bool Rook::checkForCollisions(const short i1, const short j1, const short i2, co
 				return true;
 	}
 	return false;
+}
+
+void Rook::setEventuallyAttackingKing(bool)
+{
 }
 
 const char* Rook::getType()

@@ -7,6 +7,11 @@ Game::Game()
 	theBoard.addFigure(aPawn, 1, 1);
 }
 
+void Game::figureLayout()
+{
+
+}
+
 void Game::Print()
 {
 	theBoard.PrettyPrinting();

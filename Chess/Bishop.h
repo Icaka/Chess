@@ -20,4 +20,5 @@ public:
 	void setPosition(const char*) override;
 	void setOwner(const char) override;
 	bool checkForCollisions(const short, const short, const short, const short, Figure***);
+	void setEventuallyAttackingKing(bool);
 };

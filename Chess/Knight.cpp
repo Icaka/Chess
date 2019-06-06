@@ -17,8 +17,8 @@ Knight::Knight(const char c, const char* pos)
 
 bool Knight::checkIfValidMove(const short i1, const short j1, const short i2, const short j2, Figure*** figures)
 {
-	int num1 = 22 + (7 - i1) * 10 + j1;
-	int num2 = 22 + (7 - i2) * 10 + j2;
+	int num1 = 22 + i1 * 10 + j1;
+	int num2 = 22 + i2 * 10 + j2;
 	for (int i = 0; i < 8; i++)
 	{
 		if ((num1 + movementNumbers[i]) == num2)
@@ -53,6 +53,10 @@ void Knight::setPosition(const char* newPos)
 void Knight::setOwner(const char newOwner)
 {
 	owner = newOwner;
+}
+
+void Knight::setEventuallyAttackingKing(bool)
+{
 }
 
 char Knight::getLetter() const

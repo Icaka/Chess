@@ -13,6 +13,7 @@ Board::Board()
 			figures[i][j] = nullptr;
 
 	//--------------------------------------------------------------------------
+	/*
 	Knight *whiteKnights = new Knight[2];
 	whiteKnights[0].setOwner('b');
 	whiteKnights[1].setOwner('b');
@@ -32,6 +33,7 @@ Board::Board()
 	figures[7][6] = &whiteKnights[1];
 	figures[0][7] = new Pawn;
 	figures[0][7]->setOwner('b');
+	*/
 }
 
 Board::~Board()

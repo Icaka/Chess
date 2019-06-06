@@ -12,4 +12,5 @@ public:
 	virtual char* getPosition() const = 0;
 	virtual void setPosition(const char*) = 0;
 	virtual void setOwner(const char) = 0;
+	virtual void setEventuallyAttackingKing(bool) = 0;
 };

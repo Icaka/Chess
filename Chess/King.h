@@ -18,4 +18,6 @@ public:
 	char* getPosition() const override;
 	void setPosition(const char*) override;
 	void setOwner(const char) override;
+	bool checkIfCanBeKilled(const short, const short, Figure***);
+	void setEventuallyAttackingKing(bool);
 };

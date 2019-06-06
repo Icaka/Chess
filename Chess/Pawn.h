@@ -8,6 +8,7 @@ private:
 	const char* type = "pawn";
 	char owner;
 	char* position;
+	bool eventuallyAttackingKing = false;
 
 public:
 	Pawn();
@@ -21,4 +22,5 @@ public:
 	char* getPosition() const override;
 	void setPosition(const char*) override;
 	void setOwner(const char) override;
+	void setEventuallyAttackingKing(bool);
 };
