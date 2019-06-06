@@ -1,6 +1,13 @@
 #include "King.h"
 #include <iostream>
 
+King::King()
+{
+	owner = 'n';
+	position = new char[1];
+	position = '\0';
+}
+
 King::King(const char newOwner)
 {
 	owner = newOwner;

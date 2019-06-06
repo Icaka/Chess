@@ -57,7 +57,8 @@ int main()
 	myBoard.testPrinting();
 	myBoard.PrettyPrinting();
 
-	//Game myGame;
-	//myGame.Print();
+	Game myGame;
+	myGame.startingFigureLayout();
+	myGame.Print();
 	return 0;
 }

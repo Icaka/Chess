@@ -1,5 +1,13 @@
 #include "Bishop.h"
 #include <iostream>
+
+Bishop::Bishop()
+{
+	owner = 'n';
+	position = new char[1];
+	position = '\0';
+}
+
 Bishop::Bishop(const char c)
 {
 	owner = c;

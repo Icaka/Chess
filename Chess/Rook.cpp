@@ -1,6 +1,13 @@
 #include "Rook.h"
 #include <iostream>
 
+Rook::Rook()
+{
+	owner = 'n';
+	position = new char[1];
+	position = '\0';
+}
+
 Rook::Rook(const char c)
 {
 	owner = c;

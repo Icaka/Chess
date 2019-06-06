@@ -10,6 +10,7 @@ private:
 	char* position;
 
 public:
+	Bishop();
 	Bishop(const char);
 
 	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;

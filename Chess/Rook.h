@@ -10,6 +10,7 @@ private:
 	char* position;
 
 public:
+	Rook();
 	Rook(const char);
 
 	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;

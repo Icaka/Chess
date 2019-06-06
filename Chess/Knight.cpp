@@ -4,6 +4,13 @@
 Knight::Knight()
 {
 	owner = 'n';
+	position = new char[1];
+	position = '\0';
+}
+
+Knight::Knight(char o)
+{
+	owner = o;
 	position = new char[3];
 	strcpy_s(position, strlen("no") + 1, "no");
 }

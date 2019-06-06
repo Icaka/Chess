@@ -11,6 +11,7 @@ private:
 
 public:
 	Knight();
+	Knight(const char);
 	Knight(const char, const char*);
 
 	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;

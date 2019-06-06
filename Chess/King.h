@@ -9,6 +9,7 @@ private:
 	char owner;
 	char* position;
 public:
+	King();
 	King(const char);
 
 	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;

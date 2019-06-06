@@ -10,6 +10,7 @@ private:
 	char owner;
 	char* position;
 public:
+	Queen();
 	Queen(const char);
 
 	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;

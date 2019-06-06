@@ -9,5 +9,5 @@ public:
 	Game();
 
 	void Print();
-	void figureLayout();
+	void startingFigureLayout();
 };

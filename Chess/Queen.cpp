@@ -1,5 +1,13 @@
 #include "Queen.h"
 #include <iostream>
+
+Queen::Queen()
+{
+	owner = 'n';
+	position = new char[1];
+	position = '\0';
+}
+
 Queen::Queen(const char newOwner)
 {
 	owner = newOwner;
@@ -171,7 +179,7 @@ char Queen::getLetter() const
 {
 	if (owner == 'b')
 	{
-		return '1';
+		return 'q';
 	}
 	else {
 		return 'Q';
