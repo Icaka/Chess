@@ -22,7 +22,7 @@ Board::Board()
 	short whitePawnRow = 6;
 	for (int i = 0; i < 8; i++)
 	{
-		whitePawns[i].setOwner('w');
+		whitePawns[i].setOwner('b');
 		//whitePawns[i].setPosition(squares[whitePawnRow][i].getPosition());
 		figures[whitePawnRow][i] = &whitePawns[i];
 	}

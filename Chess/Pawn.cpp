@@ -34,27 +34,32 @@ Pawn& Pawn::operator=(const Pawn& other)
 }
 */
 
-bool Pawn::checkIfValidMove(const short num1, const short num2, const short i2, const short j2, Figure*** figures)
+bool Pawn::checkIfValidMove(const short i1, const short j1, const short i2, const short j2, Figure*** figures)
 {
 	if (owner == 'b')
 	{
-		if ((i2 - 1) == num1)
+		if ((i2 - 1) == i1)
 		{
-			return true;
-		}
-		else {
-			return false;
+			if(j1 == j2)
+				if(figures[i2][j2] == nullptr)
+					return true;
+			if ((j1 == j2 - 1) || (j1 == j2 + 1))
+				if (figures[i2][j2] != nullptr)
+					return true;
 		}
 	}
 	else {
-		if ((i2 + 1) == num1)
+		if ((i2 + 1) == i1)
 		{
-			return true;
-		}
-		else {
-			return false;
+			if (j1 == j2)
+				if (figures[i2][j2] == nullptr)
+					return true;
+			if ((j1 == j2 - 1) || (j1 == j2 + 1))
+				if (figures[i2][j2] != nullptr)
+					return true;
 		}
 	}
+	return false;
 }
 
 const char* Pawn::getType()
