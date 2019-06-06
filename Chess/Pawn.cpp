@@ -34,11 +34,11 @@ Pawn& Pawn::operator=(const Pawn& other)
 }
 */
 
-bool Pawn::checkIfValidMove(const short num1, const short num2)
+bool Pawn::checkIfValidMove(const short num1, const short num2, const short i2, const short j2, Figure*** figures)
 {
 	if (owner == 'b')
 	{
-		if ((num2 - movementNumber) == num1)
+		if ((i2 - 1) == num1)
 		{
 			return true;
 		}
@@ -47,7 +47,7 @@ bool Pawn::checkIfValidMove(const short num1, const short num2)
 		}
 	}
 	else {
-		if ((num2 + movementNumber) == num1)
+		if ((i2 + 1) == num1)
 		{
 			return true;
 		}

@@ -15,7 +15,7 @@ int main()
 	cout << endl;
 	//myBoard.viewSquarePositions();
 	cout << endl;
-	Rook rook('b');
+	Rook rook('w');
 	Bishop bishop('w');
 	Queen queen('w');
 	King king('b');
@@ -35,9 +35,10 @@ int main()
 	myBoard.moveFigure("g1", "f3");
 	*/
 	//myBoard.moveFigure("h8", "g8");
-	//myBoard.moveFigure("e1", "e3");
+	myBoard.moveFigure("e1", "e3");
 	//myBoard.moveFigure("e1", "f1");
-	//myBoard.moveFigure("g1", "f3");
+	myBoard.moveFigure("g1", "e2");
+	myBoard.moveFigure("e1", "e2");
 	myBoard.moveFigure("d1", "c1");
 	myBoard.moveFigure("c1", "a3");
 	myBoard.testPrinting();

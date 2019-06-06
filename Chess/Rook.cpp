@@ -8,20 +8,72 @@ Rook::Rook(const char c)
 	position = '\0';
 }
 
-bool Rook::checkIfValidMove(const short num1, const short num2)
+bool Rook::checkIfValidMove(const short i1, const short j1, const short i2, const short j2, Figure*** figures)
 {
+	int num1 = 22 + (7 - i1) * 10 + j1;
+	int num2 = 22 + (7 - i2) * 10 + j2;
 	for (int i = 1; i < 8; i++)
 	{
 		if ((num2 + i * movementNumber) == num1)
-			return true;
+			if (!checkForCollisions(i1, j1, i2, j2, figures))
+			{
+				return true;
+			}
+			else {
+				std::cout << "this figure can't jump over others" << std::endl;
+				return false;
+			}
 
 		if ((num2 - i * movementNumber) == num1)
-			return true;
+			if (!checkForCollisions(i1, j1, i2, j2, figures))
+			{
+				return true;
+			}
+			else {
+				std::cout << "this figure can't jump over others" << std::endl;
+				return false;
+			}
 	}
 
 	if ((num2 / 10) == (num1 / 10)) // now checking if it's on the same row as the rook
-		return true;
+		if (!checkForCollisions(i1, j1, i2, j2, figures))
+		{
+			return true;
+		}
+		else {
+			std::cout << "this figure can't jump over others" << std::endl;
+			return false;
+		}
 
+	return false;
+}
+
+bool Rook::checkForCollisions(const short i1, const short j1, const short i2, const short j2, Figure*** figures)
+{
+	if (i2 > (i1 + 1))
+	{
+		for (int i = i2 - 1; i > i1; i--)
+			if (figures[i][j1] != nullptr)
+				return true;
+	}
+	if (i2 < (i1 - 1))
+	{
+		for (int i = i2 + 1; i < i1; i++)
+			if (figures[i][j1] != nullptr)
+				return true;
+	}
+	if (j2 > (j1 + 1))
+	{
+		for (int j = j2 - 1; j > j1; j--)
+			if (figures[i1][j] != nullptr)
+				return true;
+	}
+	if (j2 < (j1 - 1))
+	{
+		for (int j = j2 + 1; j < j1; j++)
+			if (figures[i1][j] != nullptr)
+				return true;
+	}
 	return false;
 }
 

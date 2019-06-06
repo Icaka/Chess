@@ -15,8 +15,10 @@ Knight::Knight(const char c, const char* pos)
 	strcpy_s(position, strlen(pos) + 1, pos);
 }
 
-bool Knight::checkIfValidMove(const short num1, const short num2)
+bool Knight::checkIfValidMove(const short i1, const short j1, const short i2, const short j2, Figure*** figures)
 {
+	int num1 = 22 + (7 - i1) * 10 + j1;
+	int num2 = 22 + (7 - i2) * 10 + j2;
 	for (int i = 0; i < 8; i++)
 	{
 		if ((num1 + movementNumbers[i]) == num2)

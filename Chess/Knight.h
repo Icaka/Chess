@@ -13,7 +13,7 @@ public:
 	Knight();
 	Knight(const char, const char*);
 
-	bool checkIfValidMove(const short, const short) override;
+	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;
 	const char* getType() override;
 	const char getOwner() override;
 	char getLetter() const override;

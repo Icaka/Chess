@@ -29,7 +29,7 @@ public:
 	void makeBlackSquare();
 	void makeWhiteSquare();
 	void moveFigure(const char*, const char*);
-	bool checkForCollisions(const short, const short, const short, const short);
+	//bool checkForCollisions(const short, const short, const short, const short);
 	void addFigure(FiguresPtr, int, int);
 	void viewSquareNumbers();
 	void testPrinting();

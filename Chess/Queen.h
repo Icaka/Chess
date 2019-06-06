@@ -12,11 +12,12 @@ private:
 public:
 	Queen(const char);
 
-	bool checkIfValidMove(const short, const short) override;
+	bool checkIfValidMove(const short, const short, const short, const short, Figure***) override;
 	const char* getType() override;
 	const char getOwner() override;
 	char getLetter() const override;
 	char* getPosition() const override;
 	void setPosition(const char*) override;
 	void setOwner(const char) override;
+	bool checkForCollisions(const short, const short, const short, const short, Figure***);
 };
