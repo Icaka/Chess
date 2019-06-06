@@ -1,11 +1,6 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game()
-{
-
-}
-
 Game::Game(const char* name1, const char* name2)
 {
 	player1 = new char[strlen(name1) + 1];

@@ -311,12 +311,12 @@ char Board::getColorByPosition(const char* thePos)
 {
 	int letterIndex1, numberIndex1;
 
-	for (int i = 0; i < 8; i++) //letters
+	for (int i = 0; i < 8; i++)
 	{
 		if (thePos[0] == pos1[i])
 			letterIndex1 = i;
 	}
-	for (int i = 0; i < 8; i++) //numbers
+	for (int i = 0; i < 8; i++)
 	{
 		if (thePos[1] == pos2[i])
 			numberIndex1 = i;

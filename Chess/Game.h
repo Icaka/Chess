@@ -9,7 +9,6 @@ private:
 	char* player1;
 	char* player2;
 public:
-	Game();
 	Game(const char*, const char*);
 
 	void Print();

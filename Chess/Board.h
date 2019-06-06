@@ -1,5 +1,4 @@
 #pragma once
-#include "Square.h"
 #include "Pawn.h"
 #include "Knight.h"
 #include "Rook.h"
@@ -18,7 +17,6 @@ class Board
 private:
 	static const int rows = 8;
 	static const int cols = 8;
-	Square squares[rows][cols];
 	FiguresPtr** figures;
 
 public:
@@ -29,7 +27,6 @@ public:
 	void makeBlackSquare();
 	void makeWhiteSquare();
 	bool moveFigure(const char*, const char*);
-	//bool checkForCollisions(const short, const short, const short, const short);
 	void addFigure(FiguresPtr, int, int);
 	void viewSquareNumbers();
 	void testPrinting();
